@@ -1,12 +1,41 @@
 doctype html
-html
+html(lang="en")
   head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(href='/styles.css' rel='stylesheet')
-    title Express.js boilerplate using Pug and Tailwind CSS
-  body.bg-purple-900
-    .container.mx-auto.w-screen
-      .mt-5
-        h1.text-9xl.text-white.text-center Hello World
+    script(src="https://unpkg.com/htmx.org")
 
+
+  body
+    div(class="flex h-screen bg-gray-100")
+      div(class="bg-white w-64 flex flex-col justify-between h-full px-4 py-6 shadow-lg")
+        div 
+          ul(class="space-y-4", hx-target="#chatbox")
+            li(class="p-3 rounded-md hover:bg-gray-100 cursor-pointer", hx-get="/selected_chat/1", hx-trigger="click", onclick="selectChat(event)") Chat 1
+            li(class="p-3 rounded-md hover:bg-gray-100 cursor-pointer", hx-get="/selected_chat/2", hx-trigger="click", onclick="selectChat(event)") Chat 2
+            li(class="p-3 rounded-md hover:bg-gray-100 cursor-pointer", hx-get="/selected_chat/3", hx-trigger="click", onclick="selectChat(event)") Chat 3
+            li(class="p-3 rounded-md hover:bg-gray-100 cursor-pointer", hx-get="/selected_chat/4", hx-trigger="click", onclick="selectChat(event)") Chat 4
+            li(class="p-3 rounded-md hover:bg-gray-100 cursor-pointer", hx-get="/selected_chat/5", hx-trigger="click", onclick="selectChat(event)") Chat 5
+        div
+          button(class="bg-blue-600 text-white px-4 py-2 rounded-md") New Chat
+          
+      div#chatbox.flex-1.bg-white.overflow-y-auto.p-6
+        p Your chats will appear here...
+
+    
+
+
+  script.
+    function selectChat(event) {
+      // Get all li elements
+      const items = document.querySelectorAll('ul li');
+      
+      // Remove the bg-blue-600 class from all li elements
+      items.forEach(item => {
+        item.classList.remove('bg-blue-600', 'text-white');
+      });
+      
+      // Add the bg-blue-600 and text-white class to the clicked li element
+      event.currentTarget.classList.add('bg-blue-600', 'text-white');
+    }

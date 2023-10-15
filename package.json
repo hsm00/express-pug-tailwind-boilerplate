@@ -2,12 +2,12 @@
   "name": "express-pug-tailwind-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run build:css && nodemon ./bin/www",
-    "start": "NODE_ENV=production npm run build:css && node ./bin/www",
-    "build:css": "postcss src/css/app.css -o assets/styles.css",
+    "dev": "nodemon",
+    "start": "cross-env NODE_ENV=production node app.js",
+    "build:css": "postcss public/styles/app.css -o public/styles/styles.css",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
+    "cross-env": "^7.0.3",
     "cssnano": "^5.0.2",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
